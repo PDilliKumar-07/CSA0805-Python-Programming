@@ -1,0 +1,28 @@
+# ASSIGNMENT 1 - TASK 2: Explore values, types, floating point and Decimal money totals.
+"""Task 2: demonstrate why Decimal is safer than float for money."""
+from decimal import Decimal
+
+payments = ["33.40"] * 1000 + ["0.10"] * 3
+
+
+def total_float(items):
+    """Add payment strings after converting each one to float."""
+    total = 0.0
+    for amount in items:
+        total += float(amount)
+    return total
+
+
+def total_decimal(items):
+    """Add payment strings exactly using Decimal values."""
+    total = Decimal("0.00")
+    for amount in items:
+        total += Decimal(amount)
+    return total
+
+
+print("float  :", total_float(payments))
+print("Decimal:", total_decimal(payments))
+print(0.1 + 0.2 == 0.3, Decimal("0.1") + Decimal("0.2") == Decimal("0.3"))
+print("Decimal from float:", sum((Decimal(float(x)) for x in payments), Decimal("0")))
+
